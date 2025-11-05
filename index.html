@@ -3,45 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organização de Voluntários - Início</title>
+    <title>Organização de Voluntários - Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav>
-            <div class="logo">&#128153; Voluntários</div>
+            <div class="logo">Voluntários</div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul id="navMenu">
-                <li><a href="index.html" class="active">Início</a></li>
-                <li><a href="projeto.html">Projetos</a></li>
-                <li><a href="cadastro.html">Seja Voluntário</a></li>
-
+                <li><a href="#home" class="nav-link active">Início</a></li>
+                <li><a href="#projetos" class="nav-link">Projetos</a></li>
+                <li><a href="#cadastro" class="nav-link">Seja Voluntário</a></li>
             </ul>
         </nav>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Transforme Vidas com Voluntariado</h1>
-            <p>Somos uma organização dedicada à inclusão social e ao atendimento de famílias. Junte-se a nós e faça a diferença!</p>
-            <a href="cadastro.html" class="btn-primary">Quero Ser Voluntário</a>
-        </div>
-    </section>
-
-    <!-- Quem Somos -->
-    <section class="about">
-        <h2>Quem Somos</h2>
-        <p>Somos uma organização sem fins lucrativos que atua no atendimento de famílias em inclusão social, promovendo dignidade, esperança e oportunidades para quem mais precisa.</p>
+    
+    <div class="main-container">
         
-    </section>  
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Organização de Voluntários. Todos os direitos reservados.</p>
-     <p>Feito com &#10084;&#65039; para transformar vidas</p>
-    </footer>
+        <main id="app-content">
+            </main>
 
-    <script src="script.js"></script>
+        <footer>
+            <p>&copy; 2025 Organização de Voluntários. Todos os direitos reservados.</p>
+            <p>Feito com ❤️ para transformar vidas.</p>
+        </footer>
+    </div>
+    
+    <script src="js/main.js" type="module" defer></script> 
+<script src="js/router.js" type="module" defer></script>
 </body>
 </html>

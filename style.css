@@ -1,33 +1,92 @@
+/* ==========================
+   1. Sistema de Design (Variáveis CSS)
+   ========================== */
+:root {
+    /* Paleta de Cores (8 Cores) */
+    --color-primary: #667eea;      /* Roxo Azulado (Principal) */
+    --color-secondary: #764ba2;    /* Roxo Escuro (Secundário) */
+    --color-accent-1: #ffb703;     /* Amarelo (Destaque) */
+    --color-accent-2: #023047;     /* Azul Marinho (Contraste) */
+    --color-neutral-dark: #333;    /* Preto Quase Total (Texto) */
+    --color-neutral-light: #f5f5f5;/* Cinza Claro (Fundo Secundário) */
+    --color-success: #2a9d8f;      /* Verde (Sucesso) */
+    --color-error: #e63946;        /* Vermelho (Erro) */
+    --color-white: #ffffff;
 
+    /* Sistema de Espaçamento Modular (Múltiplos de 8) */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-xxl: 64px;
+    
+    /* Tipografia Hierárquica (5 Tamanhos) */
+    --font-size-base: 1rem;       /* 16px */
+    --font-size-lg: 1.25rem;
+    --font-size-h1: 3.5rem;
+    --font-size-h2: 2.5rem;
+    --font-size-h3: 1.75rem;
 
+    /* Outros */
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --header-height: 70px;
+}
+
+/* ==========================
+   2. Reset e Base
+   ========================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: var(--color-neutral-dark);
+    background-color: var(--color-white);
 }
 
+/* ==========================
+   3. Estrutura Principal (CSS Grid para o Layout Geral)
+   ========================== */
+.main-container {
+    /* O Grid define a estrutura geral da página (Header, Conteúdo, Footer) */
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Cabeçalho, Conteúdo (ocupa o resto), Rodapé */
+    grid-template-columns: 100%;
+    min-height: 100vh;
+    padding-top: var(--header-height); /* Evita que o conteúdo seja escondido pelo header fixo */
+}
+
+section {
+    padding: var(--space-xl) var(--space-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
 
 /* ==========================
-   Header e Navegação
+   4. Header e Navegação (Flexbox)
    ========================== */
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 1rem 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: var(--color-white);
+    padding: var(--space-sm) 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: var(--header-height);
 }
-
 
 nav {
     max-width: 1200px;
@@ -35,30 +94,29 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 var(--space-md);
 }
 
-
 .logo {
-    font-size: 1.5rem;
+    font-size: var(--font-size-lg);
     font-weight: bold;
 }
 
-
+/* Menu Desktop (Flexbox) */
 nav ul {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: var(--space-lg);
 }
-
 
 nav a {
-    color: white;
+    color: var(--color-white);
     text-decoration: none;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-speed);
     font-weight: 500;
+    opacity: 0.8;
+    padding: var(--space-xs) 0;
 }
-
 
 nav a:hover,
 nav a.active {
@@ -66,231 +124,283 @@ nav a.active {
     font-weight: bold;
 }
 
-
-nav a {
-    opacity: 0.8;
+/* Menu Mobile (Escondido por padrão no desktop) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 1.8rem;
+    cursor: pointer;
 }
 
-
 /* ==========================
-   Hero Section - Index
+   5. Hero Section (Index)
    ========================== */
 .hero {
     background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
                 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/></svg>');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: calc(100vh - var(--header-height)); /* Ajuste a altura para não esconder o hero */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
-    margin-top: 70px;
+    color: var(--color-white);
 }
-
 
 .hero-page {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    padding: var(--space-xxl) var(--space-md) var(--space-xl);
     text-align: center;
-    color: white;
-    margin-top: 70px;
+    color: var(--color-white);
 }
-
 
 .hero-content, .signup-section {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: var(--space-md);
     animation: fadeInUp 1s ease-out;
 }
 
-
 .hero h1,
 .hero-page h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+    font-size: var(--font-size-h1);
+    margin-bottom: var(--space-sm);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-
 .hero p,
 .hero-page p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-lg);
 }
 
-
-
+/* ==========================
+   6. Botões (Componentes)
+   ========================== */
 .cta-buttons {
     display: flex;
-    flex-direction: row; /* lado a lado */
-    gap: 1.5rem; /* espaço entre os botões */
-    justify-content: center; /* centraliza horizontalmente */
+    gap: var(--space-md);
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* quebra em telas pequenas */
-    margin-top: 2rem;
+    flex-wrap: wrap; 
+    margin-top: var(--space-lg);
 }
 
-
 .btn-primary, .btn-secondary {
-    flex: 1 1 200px; /* largura mínima 200px, cresce se houver espaço */
-    max-width: 250px; /* não fique muito largo */
     padding: 1rem 2.5rem;
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     font-weight: bold;
     border-radius: 50px;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     position: relative;
     overflow: hidden;
     text-align: center;
+    text-decoration: none; /* Para usar em links <a> */
+    display: inline-block;
 }
-
 
 .btn-primary {
-    background: #667eea;
-    color: white;
+    background: var(--color-primary);
+    color: var(--color-white);
 }
-
 
 .btn-secondary {
-    background: #764ba2;
-    color: white;
+    background: var(--color-secondary);
+    color: var(--color-white);
 }
 
-
 .btn-primary:hover, .btn-secondary:hover {
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-3px) scale(1.02);
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-
-.btn-primary::after, .btn-secondary::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255,255,255,0.15);
-    transform: rotate(45deg);
-    transition: all 0.5s ease;
+/* Estado Disabled */
+.btn-primary:disabled, .btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
-
-.btn-primary:hover::after, .btn-secondary:hover::after {
-    top: -20%;
-    left: -20%;
+/* ==========================
+   7. Seções de Conteúdo (Flexbox e Grid - Projeto.html)
+   ========================== */
+h2 {
+    font-size: var(--font-size-h2);
+    margin-bottom: var(--space-lg);
+    text-align: center;
 }
 
+h3 {
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--space-sm);
+}
 
+/* Layout de Projetos/Sobre (Grid de 12 colunas) */
+.about-content, .project-grid {
+    display: grid;
+    /* 12 colunas com espaço de 24px entre elas */
+    grid-template-columns: repeat(12, 1fr); 
+    gap: var(--space-md); 
+}
+
+/* Cards de Projetos (Grid de Colunas Flexíveis) */
+.impact-cards {
+    display: grid;
+    /* Layout com repetição automática: 3 colunas no desktop, quebram em telas menores */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    grid-column: 1 / -1; /* Ocupa todas as 12 colunas do grid principal */
+}
+
+.card {
+    background: var(--color-neutral-light);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: var(--font-size-h2);
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+}
+
+/* ==========================
+   8. Formulários (Cadastro.html)
+   ========================== */
+.signup-section {
+    max-width: 700px;
+    margin: var(--space-xl) auto;
+    padding: var(--space-lg);
+    background: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
 
 form fieldset {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    border: 1px solid var(--color-neutral-light);
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
 }
-
 
 form legend {
     font-weight: bold;
-    padding: 0 0.5rem;
+    padding: 0 var(--space-xs);
+    color: var(--color-secondary);
 }
-
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
 }
-
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-xs);
     font-weight: 500;
 }
-
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
     padding: 0.75rem 1rem;
-    border-radius: 6px;
+    border-radius: var(--border-radius);
     border: 1px solid #ccc;
-    font-size: 1rem;
+    font-size: var(--font-size-base);
+    transition: border-color var(--transition-speed);
 }
 
-
-.success-message {
-    display: none; 
-    margin-bottom: 1rem;
-    color: green;
-    font-weight: bold;
-    text-align: center;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
+/* Validação Visual */
+.form-group input:invalid:not(:placeholder-shown) {
+    border-color: var(--color-error);
+}
 
-footer {
-    text-align: center;
-    padding: 2rem;
-    background: #f5f5f5;
-    margin-top: 3rem;
+.form-group input:valid:not(:placeholder-shown) {
+    border-color: var(--color-success);
+}
+
+/* Botão de Submit do Formulário */
+button[type="submit"] {
+    /* Herda o estilo do .btn-primary */
+    width: 100%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    transition: background var(--transition-speed);
+}
+
+button[type="submit"]:hover {
+    background: var(--color-secondary);
 }
 
 
 /* ==========================
-   Formulário de Cadastro
+   9. Footer
    ========================== */
-.signup-section {
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-.signup-section h2 {
+footer {
     text-align: center;
-    margin-bottom: 2rem;
+    padding: var(--space-md);
+    background: var(--color-neutral-light);
+    margin-top: auto; /* Garante que ocupe o espaço no final do grid */
 }
 
-button[type="submit"] {
-    width: 100%;
-    background: #667eea;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 1rem;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.3s;
+/* ==========================
+   10. Responsividade (5 Breakpoints)
+   ========================== */
+
+/* Breakpoint 1: Tablet Landscape (>= 992px) */
+@media (max-width: 992px) {
+    :root {
+        --font-size-h1: 3rem;
+    }
 }
 
-button[type="submit"]:hover {
-    background: #764ba2;
-}
-
+/* Breakpoint 2: Tablet Portrait (<= 768px) */
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
+    :root {
+        --font-size-h1: 2.5rem;
+        --font-size-h2: 2rem;
     }
 
+    /* Menu Hamburger */
     nav ul {
         display: none;
         flex-direction: column;
-        background: #667eea;
+        background: var(--color-primary);
         position: absolute;
-        top: 70px;
+        top: var(--header-height);
         right: 0;
         width: 100%;
         text-align: center;
-        padding: 1rem 0;
+        padding: var(--space-sm) 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     }
 
     nav ul.show {
@@ -299,14 +409,107 @@ button[type="submit"]:hover {
 
     .menu-toggle {
         display: block;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.8rem;
     }
 
+    /* Botões */
     .cta-buttons {
         flex-direction: column;
     }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%; /* Ocupa a largura total no mobile */
+        max-width: 300px;
+    }
+
+    /* Hero */
+    .hero {
+        text-align: left;
+        align-items: flex-start;
+        padding-top: var(--space-xl);
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: var(--space-sm);
+    }
 }
 
+/* Breakpoint 3: Mobile Landscape (<= 576px) */
+@media (max-width: 576px) {
+    :root {
+        --font-size-h1: 2rem;
+        --font-size-h2: 1.5rem;
+    }
+
+    section {
+        padding: var(--space-lg) var(--space-sm);
+    }
+
+    /* Reduz o gap do menu mobile */
+    nav ul {
+        gap: var(--space-sm);
+    }
+    
+    .impact-cards {
+        /* Garante uma única coluna em telas muito pequenas */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Breakpoint 4: Mobile Portrait (<= 400px) */
+@media (max-width: 400px) {
+    :root {
+        --space-md: 16px;
+    }
+
+    nav {
+        padding: 0 var(--space-xs);
+    }
+}
+
+/* Breakpoint 5: Telas Grandes (>= 1400px) */
+@media (min-width: 1400px) {
+    section, nav {
+        padding: 0 4rem;
+    }
+}
+
+/* Keyframes para animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Mensagem de Erro */
+.error-message {
+    color: var(--color-error); /* Usando a variável de cor de erro definida */
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none; /* Escondido por padrão */
+}
+
+/* Campos inválidos visualmente */
+.form-group.invalid input,
+.form-group.invalid select,
+.form-group.invalid textarea {
+    border-color: var(--color-error) !important;
+}
+
+/* Mensagem de Sucesso */
+#submitSuccess {
+    background-color: #e6fffb;
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
+    padding: var(--space-sm);
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-bottom: var(--space-md);
+    display: none; /* Escondido por padrão, será mostrado pelo JS */
+}
