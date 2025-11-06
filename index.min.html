@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organização de Voluntários - Home</title>
+    <link rel="stylesheet" href="dist/css/style.min.css">
+</head>
+<body>
+    <header>
+    <nav>
+        <div class="logo">Voluntários</div>
+        <button class="menu-toggle" onclick="toggleMenu()" 
+                aria-controls="navMenu" aria-expanded="false" 
+                aria-label="Alternar navegação principal">
+            ≡
+        </button>
+        <ul id="navMenu">
+            <li class="nav-link active"><a href="#home">Início</a></li>
+            <li class="nav-link"><a href="#projetos">Projetos</a></li>
+            <li class="nav-link"><a href="#cadastro">Seja Voluntário</a></li>
+        </ul>
+        
+        <button id="theme-switcher" class="theme-switcher" 
+                onclick="toggleTheme()" aria-label="Mudar para modo escuro">
+            🌙
+        </button>
+    </nav>
+</header>
+<div class="main-container">
+    <main id="app-content" role="main" aria-live="polite"> 
+        </main>
+    </div>
+    
+  <script src="dist/js/main.js" type="module" defer></script> 
+    <script src="dist/js/router.js" type="module" defer></script>
+    <script src="dist/js/script.js" type="module" defer></script>
+    
+</body>
+</html>
